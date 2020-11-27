@@ -20,3 +20,10 @@ Navigate to the project directory and run the following steps
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+
+## change log
+    - Added inline edit to the "Label", "H1", "H2" and "H3" all values are persisted to Local Storage
+    - Input/ Textarea values and Button labels are also editable and persisted to Local Storage
+    - small UI changes like move cursor
+    - warning message on the clear fields 
