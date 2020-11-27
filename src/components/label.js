@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import useBlur from '../util/useBlur';
 
-const P = (props) => {
+const Label = (props) => {
   const ref = useRef(null);
   useBlur(ref, props.onChange);
-  return <p contentEditable={true} ref={ref}>{props.label}</p>;
+  return <label contentEditable={true} ref={ref}><b>{props.label}</b></label>;
 };
-export default P;
+export default Label;

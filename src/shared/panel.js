@@ -4,13 +4,9 @@ import Draggable from 'react-draggable';
 import Fields from '../shared/fields';
 import { v4 as uuidv4 } from 'uuid';
 import { FaTimesCircle } from 'react-icons/fa';
-import Toolbar from './toolbar';
-import Widget from '../shared/widget';
-function updateRenderer(cmpLst) {
-  localStorage.setItem('componentList', JSON.stringify(cmpLst));
-}
-const Renderer = () => {
-  const [componentList, setComponentList] = useState([]);
+
+const Panel = (props) => {
+  const [componentList, setComponentList] = useState(props.list);
   const nodeRef = useRef(null);
 
   useEffect(() => {
@@ -36,7 +32,7 @@ const Renderer = () => {
     }),
   });
 
-  const onDragStop = (e, data, itm) => {
+  const onDropStop = (e, data, itm) => {
     setComponentList((lst) => {
       let _lst = lst.map((val) => {
         let _val = val;
@@ -45,7 +41,6 @@ const Renderer = () => {
         }
         return _val;
       });
-      updateRenderer(_lst);
       return _lst;
     });
   };
@@ -53,57 +48,30 @@ const Renderer = () => {
   const removeElement = (itm) => {
     setComponentList((lst) => {
       let _lst = lst.filter((val, i) => val.id !== itm.id);
-      updateRenderer(_lst);
-      return _lst;
-    });
-  };
-
-  const clearRender = () => {
-    if (window.confirm('Are you sure to clear all components?')) {
-      setComponentList([]);
-      updateRenderer([]);
-    }
-  };
-
-  const addPanel = () => {
-    alert('Yet to Implement');
-  };
-
-  const updateLabel = (itm, lbl) => {
-    let _label = lbl.target ? lbl.target.value : lbl;
-    setComponentList((lst) => {
-      let _lst = lst.map((val) => {
-        let _val = val;
-        if (val.id === itm.id) {
-          _val.label = _label;
-        }
-        if (lbl.target) _val.defaultValue = lbl.target.value;
-
-        return _val;
-      });
-      updateRenderer(_lst);
       return _lst;
     });
   };
 
   return (
-    <div>
-      <Toolbar clearRender={clearRender} addPanel={addPanel} />
-      <div id='renderer' ref={drop} className='renderer'>
+      <div ref={drop} className='panel'>
         <div nodeRef={nodeRef}>
           {componentList?.map((itm, i) => (
-            <Widget
+            <Draggable
               key={itm.id}
-              itm={itm}
-              onDragStop={onDragStop}
-              removeElement={removeElement}
-              updateLabel={updateLabel}
-            />
+              {...itm}
+              onStop={(e, data) => onDropStop(e, data, itm)}
+            >
+              <div className='drag-item'>
+                <span className='action' onClick={() => removeElement(itm)}>
+                  <FaTimesCircle />
+                </span>
+                <Fields {...itm}>Field</Fields>
+              </div>
+            </Draggable>
           ))}
         </div>
       </div>
-    </div>
   );
 };
 
-export default Renderer;
+export default Panel;

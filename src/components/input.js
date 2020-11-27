@@ -1,9 +1,9 @@
-const Input = (props) => (
-    <div className="input">
-      <label>{props.label || 'Input'}</label>
+const Input = (props) => {
+  return (
+    <div className='input'>
       <input {...props} />
     </div>
   );
-  
-  export default Input;
-  
+};
+
+export default Input;

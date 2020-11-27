@@ -7,27 +7,29 @@ import {
   P,
   Select,
   Textarea,
+  Label,
 } from '../components/index';
 
 const Fields = (props) => {
-  const { data, children } = props;
-  switch (data.type) {
+  switch (props.data.type) {
     case 'button':
-      return <Button {...data} />;
+      return <Button {...props.data} {...props} />;
     case 'textarea':
-      return <Textarea {...data} />;
+      return <Textarea {...props.data} {...props} />;
     case 'select':
-      return <Select {...data} />;
+      return <Select {...props.data} {...props} />;
     case 'p':
-      return <P {...data} children={children} />;
+      return <P {...props.data} {...props} />;
     case 'h1':
-      return <H1 {...data} children={children} />;
+      return <H1 {...props.data} {...props} />;
     case 'h2':
-      return <H2 {...data} children={children} />;
+      return <H2 {...props.data} {...props} />;
     case 'h3':
-      return <H3 {...data} children={children} />;
+      return <H3 {...props.data} {...props} />;
+    case 'label':
+      return <Label {...props.data} {...props} />;
     default:
-      return <Input {...data} />;
+      return <Input {...props.data} {...props} />;
   }
 };
 

@@ -1,8 +1,9 @@
-const Textarea = (props) => (
-  <div className="textarea">
-    <label>{props.label || 'Textarea'}</label>
-    <textarea {...props} />
-  </div>
-);
+const Textarea = (props) =>{
+  return (
+    <div className="textarea">
+      <textarea {...props} />
+    </div>
+  );
+} 
 
 export default Textarea;

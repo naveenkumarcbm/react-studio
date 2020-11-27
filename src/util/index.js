@@ -3,9 +3,10 @@ import {
   BiHeading,
   BiText,
   BiJoystickButton,
-  BiChevronDown
+  BiChevronDown,
+  BiLabel
 } from 'react-icons/bi';
-import { BsTextareaT, BsCursorText } from 'react-icons/bs';
+import { BsTextareaT } from 'react-icons/bs';
 export const componentList = [
   {
     label: 'button',
@@ -16,6 +17,11 @@ export const componentList = [
     label: 'textarea',
     type: 'textarea',
     icon: <BiText />,
+  },
+  {
+    label: 'label',
+    type: 'label',
+    icon: <BiLabel />,
   },
   {
     label: 'input',
