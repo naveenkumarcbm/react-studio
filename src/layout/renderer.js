@@ -9,11 +9,10 @@ function updateRenderer(cmpLst) {
 }
 const Renderer = () => {
   const [componentList, setComponentList] = useState([]);
-  const [selected, setSelected] = useState({});
   const nodeRef = useRef(null);
 
   useEffect(() => {
-    let _lst = JSON.parse(localStorage.getItem('componentList'));
+    let _lst = JSON.parse(localStorage.getItem('componentList')) || [];
     setComponentList(_lst);
   }, []);
 
@@ -72,13 +71,13 @@ const Renderer = () => {
       </div>
       <div id='renderer' ref={drop} className='renderer'>
         <div nodeRef={nodeRef}>
-          {componentList.reverse().map((itm, i) => (
+          {componentList?.map((itm, i) => (
             <Draggable
               key={itm.id}
               {...itm}
               onStop={(e, data) => onDropStop(e, data, itm)}
             >
-              <div onClick={() => setSelected(itm)} className='drag-item'>
+              <div className='drag-item'>
                 <span className='action' onClick={() => removeElement(itm)}>
                   <FaTimesCircle />
                 </span>
