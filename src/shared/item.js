@@ -11,7 +11,7 @@ const Item = (props) => {
   return (
     <div ref={drag} className='itm-container'>
       <span>{props.icon}</span>
-      <b>{props.label}</b>
+      <b className="label">{props.label}</b>
     </div>
   );
 };

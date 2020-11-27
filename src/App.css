@@ -100,3 +100,10 @@ i {
 .tool-bar > span {
   cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+
+  .label{
+    display: none;
+  }
+}
