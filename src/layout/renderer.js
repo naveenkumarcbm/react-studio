@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDrop } from 'react-dnd';
-import Draggable from 'react-draggable';
-import Fields from '../shared/fields';
 import { v4 as uuidv4 } from 'uuid';
-import { FaTimesCircle } from 'react-icons/fa';
 import Toolbar from './toolbar';
 import Widget from '../shared/widget';
 function updateRenderer(cmpLst) {
@@ -21,14 +18,12 @@ const Renderer = () => {
   const [, drop] = useDrop({
     accept: 'COMPONENT',
     drop: (item, monitor) => {
-      console.log('monitor', monitor);
       let _cmpLst = [...componentList];
       let _item = { ...item };
       _item.id = uuidv4();
       _item.position = { x: 0, y: 0 };
       _cmpLst.push(_item);
       setComponentList(_cmpLst);
-      console.log('cmp list', _cmpLst);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),

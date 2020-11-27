@@ -17,14 +17,12 @@ const Panel = (props) => {
   const [, drop] = useDrop({
     accept: 'COMPONENT',
     drop: (item, monitor) => {
-      console.log('monitor', monitor);
       let _cmpLst = [...componentList];
       let _item = { ...item };
       _item.id = uuidv4();
       _item.position = { x: 0, y: 0 };
       _cmpLst.push(_item);
       setComponentList(_cmpLst);
-      console.log('cmp list', _cmpLst);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
